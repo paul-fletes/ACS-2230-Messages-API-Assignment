@@ -6,6 +6,21 @@ const User = require('../models/user')
 
 /** Route to get all messages. */
 router.get('/', (req, res) => {
+    Message.find().then((messages) => {
+        return res.json({ messages })
+    })
+        .catch((err) => {
+            throw err.message
+        })
+})
+
+/** Route to get one message by id. */
+router.get('/:messageId', (req, res) => {
+    return res.send(`Message with id ${req.params.messageId}`)
+})
+
+/** Route to add a new message. */
+router.post('/', (req, res) => {
     let message = new Message(req.body)
     message.save()
         .then(message => {
@@ -23,19 +38,6 @@ router.get('/', (req, res) => {
         })
 })
 
-/** Route to get one message by id. */
-router.get('/:messageId', (req, res) => {
-    return res.send(`Message with id ${req.params.messageId}`)
-})
-
-/** Route to add a new message. */
-router.post('/', (req, res) => {
-    return res.send({
-        message: 'Create new message',
-        data: req.body
-    })
-})
-
 /** Route to update an existing message. */
 router.put('/:messageId', (req, res) => {
     return res.send({
@@ -49,4 +51,4 @@ router.delete('/:messageId', (req, res) => {
     return res.send(`Delete message with id ${req.params.messageId}`)
 })
 
-module.exports = router
+module.exports = router;

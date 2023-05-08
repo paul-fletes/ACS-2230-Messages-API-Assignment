@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+
+// Add model code below:
 const UserSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, select: false },
@@ -18,5 +20,4 @@ UserSchema.pre('find', function (next) {
 })
 
 const User = mongoose.model('User', UserSchema)
-
 module.exports = User
