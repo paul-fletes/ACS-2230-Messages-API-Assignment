@@ -3,11 +3,13 @@ const Schema = mongoose.Schema
 
 // Add your models here.
 
-const MessageSchema = new Schema({
+const a24Schema = new Schema({
   title: { type: String, required: true },
-  body: { type: String, required: true },
-  author: { type: Schema.Types.ObjectId, ref: "User", required: true },
-})
+  director: { type: String, required: true },
+  yearRelease: { type: Number, required: true },
+  genre: { type: String, required: true },
+  actor: { type: String, required: true },
+});
 
-const Message = mongoose.model('Message', MessageSchema)
-module.exports = Message
+const Movie = mongoose.model('Message', a24Schema)
+module.exports = Movie
